@@ -1,0 +1,13 @@
+ANSWER=1
+CFLAGS=-g -O0 -std=gnu99
+
+all: bmgrep_test
+
+bmgrep_test: bmgrep_test.o bmgrep.o bmgrep.h
+	gcc $^ -o $@ -lrt -lm
+
+%.o : %.c
+	gcc $(CFLAGS) -DANSWER=$(ANSWER) -c ${<}
+
+clean :
+	rm -f *.o bmgrep_test
